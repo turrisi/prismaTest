@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 model Product {
-  id       Int        @id @unique
+  id       Int        @id @unique @default(autoincrement())
   title    String
   number   String
   Category Category[]
@@ -20,7 +20,7 @@ model Product {
 
 model Category {
   id        Int      @id @unique @default(autoincrement())
-  name      String
+  name      String   @unique
   Product   Product? @relation(fields: [ProductId], references: [id])
   ProductId Int
 }
